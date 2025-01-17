@@ -1,28 +1,20 @@
 <?php
 
-// Check if the 'email' parameter is passed in the URL
-if (isset($_GET['email']) && !empty($_GET['email'])) {
-    $encodedEmail = $_GET['email'];
+// Extract the 5-digit random number and the Base64-encoded email from the URL path
+$path = trim($_SERVER['REQUEST_URI'], '/');
+$randomNumber = substr($path, 0, 5); // Extract the first 5 digits
+$encodedEmail = substr($path, 5); // Extract the rest (the Base64-encoded email)
 
-    // Ensure the email is Base64 encoded
-    if (base64_encode(base64_decode($encodedEmail, true)) === $encodedEmail) {
-        // Check if the URL contains the 5-digit random number and the encoded email
-        if (preg_match('/^(\d{5})([a-zA-Z0-9+\/=]+)$/', $encodedEmail, $matches)) {
-            $randomNumber = $matches[1];  // Extract the 5-digit random number
-            $emailPart = $matches[2];     // Extract the Base64 email part
+// Validate the Base64-encoded email format
+if (base64_encode(base64_decode($encodedEmail, true)) === $encodedEmail) {
+    // Construct the redirect URL with the Base64-encoded email
+    $redirectUrl = "https://example.com/{$encodedEmail}";
 
-            // Construct the new redirect URL
-            $redirectUrl = "https://example.com/{$randomNumber}{$emailPart}";
-
-            // Redirect to the new URL
-            header("Location: {$redirectUrl}");
-            exit; // Ensure no further code is executed
-        } else {
-            echo "The email does not contain a valid 5-digit random number and Base64 encoded email.";
-        }
-    } else {
-        echo "Invalid Base64 encoded email.";
-    }
+    // Redirect the user to the new URL
+    header("Location: {$redirectUrl}");
+    exit;
 } else {
-    echo "No email parameter provided.";
+    // If the email is not valid, display an error
+    echo "Invalid Base64-encoded email.";
 }
+?>
