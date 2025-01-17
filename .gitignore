@@ -1,0 +1,13 @@
+# Ignore the composer vendor directory
+/vendor/
+
+# Ignore the Platform.sh config directory (if needed)
+.platform/
+
+# Ignore IDE/editor specific files
+.idea/
+.vscode/
+
+# Ignore other files like logs, tmp files, etc.
+*.log
+*.tmp
