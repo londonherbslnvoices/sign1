@@ -1,9 +1,20 @@
+# .platform/app.yaml
 name: php-redirect-app
-type: "php:8.1"  # Specify the PHP version
 
-# Web application configuration
+type: "php:8.1"  # Change the version if necessary
+
+# Define the web root location (the default entry point)
 web:
     locations:
         "/":
-            root: "index.php"  # Points to the index.php file in the root directory
+            root: "index.php"  # Points to index.php file in the root
             allow: true
+
+# If you want to specify any build steps (you don't need any for this simple app)
+build:
+    commands:
+        - echo "No build steps required"
+
+deploy:
+    commands:
+        - echo "Deployment completed"
