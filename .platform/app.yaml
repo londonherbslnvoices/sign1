@@ -1,0 +1,25 @@
+name: php-redirect-app
+type: "php:8.1"  # You can adjust the PHP version to match your needs
+
+# The location of the document root
+web:
+    locations:
+        "/":
+            root: "index.php"  # Root file for the app
+            allow: true  # Allow access to this location
+
+# If you need to define any additional build or deploy steps
+build:
+    commands:
+        # No build steps required for a simple redirect app
+        - echo "No build steps required"
+
+deploy:
+    commands:
+        # Deployment completed
+        - echo "Deployment completed"
+
+# Define any relationships to other services (e.g., databases) if needed in the future
+relationships: {}
+
+# Optionally, you can add environment variables here if needed for your app
