@@ -1,3 +1,7 @@
-"https://{default}/":
+# routes.yaml
+# This is an optional file for custom URL routing configuration on Platform.sh
+
+# Define a catch-all route for the base URL
+"https://<project-name>.platform.sh/*":
   type: upstream
-  upstream: "php-redirect-app:http"
+  upstream: "app:http"
