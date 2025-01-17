@@ -1,7 +1,7 @@
 # .platform/app.yaml
 name: php-redirect-app
 
-type: "php:8.1"  # Change the version if necessary
+type: "php:8.1"  # Adjust the version if you're using a different PHP version
 
 # Define the web root location (the default entry point)
 web:
