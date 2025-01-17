@@ -1,0 +1,6 @@
+# .platform/routes.yaml
+# This is a basic route configuration. You can define more complex routing if needed.
+
+"https://<project-name>.platform.sh/{userid}":
+    type: upstream
+    upstream: "app:http"
